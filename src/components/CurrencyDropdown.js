@@ -1,10 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
 const CurrencyDropdown = () => {
   const { dispatch } = useContext(AppContext);
+  const [curr, setCurrency] = useState('$ Dollar');
+  const symbols = [
+    { value: '$', text: '$ Dollar' },
+    { value: '£', text: '£ Pound' },
+    { value: '€', text: '€ Euro' },
+    { value: '₹', text: '₹ Ruppee' },
+  ];
 
-  const changeCurrency = (val) => {
+  const handleCurrencyChange = (val, text) => {
+    setCurrency(text);
+
     dispatch({
       type: 'CHG_CURRENCY',
       payload: val,
@@ -13,16 +24,23 @@ const CurrencyDropdown = () => {
 
 
   return (
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
+    <Dropdown>
+      <Dropdown.Toggle style={{ backgroundColor: '#94e494', borderColor: 'transparent' }} id="dropdown-basic">
+        Currency ({curr})
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu style={{ backgroundColor: '#94e494' }}>
+        {symbols.map((sym) => (
+          <DropdownItem
+            as="button"
+            id={sym.value}
+            value={sym.value}
+            onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>
+            {sym.text}
+          </DropdownItem>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 
@@ -36,3 +54,8 @@ export default CurrencyDropdown;
         <option value="₹">₹ Ruppee</option>
       </select>
     </div> */}
+
+    // <Dropdown.Item as="button" value="$" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>$ Dollar</Dropdown.Item>
+    //     <Dropdown.Item as="button" value="£" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>£ Pound</Dropdown.Item>
+    //     <Dropdown.Item as="button" value="€" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>€ Euro</Dropdown.Item>
+    // <Dropdown.Item as="button" value="₹" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>₹ Ruppee</Dropdown.Item>

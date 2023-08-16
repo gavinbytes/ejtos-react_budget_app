@@ -45,17 +45,3 @@ const CurrencyDropdown = () => {
 };
 
 export default CurrencyDropdown;
-
-{/* <div className='alert alert-success'>
-      <select name="Currency" id="Currency" onChange={event => changeCurrency(event.target.value)}>
-        <option value="$">$ Dollar</option>
-        <option value="£">£ Pound</option>
-        <option value="€">€ Euro</option>
-        <option value="₹">₹ Ruppee</option>
-      </select>
-    </div> */}
-
-    // <Dropdown.Item as="button" value="$" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>$ Dollar</Dropdown.Item>
-    //     <Dropdown.Item as="button" value="£" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>£ Pound</Dropdown.Item>
-    //     <Dropdown.Item as="button" value="€" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>€ Euro</Dropdown.Item>
-    // <Dropdown.Item as="button" value="₹" onClick={(e) => handleCurrencyChange(e.target.value, e.target.innerHTML)}>₹ Ruppee</Dropdown.Item>
